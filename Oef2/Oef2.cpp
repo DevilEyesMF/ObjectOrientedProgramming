@@ -7,14 +7,16 @@ int faculteit(int);
 
 int main()
 {
-	cout << faculteit(5) << endl;
+	const int GETAL = -5;
+
+	cout << faculteit(GETAL) << endl;
 }
 
 int faculteit(int input)
 {
 	int result = 1;
 
-	for (; input > 0; input--)
+	for (; input > 1; input--)
 	{
 		result *= input;
 	}
