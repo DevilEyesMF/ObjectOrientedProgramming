@@ -5,6 +5,9 @@
 class GPU : public Component
 {
 public:
+	// constructor
+	GPU(std::string);
+
 	// getters
 	int getPower();
 	int getBusspeed();
