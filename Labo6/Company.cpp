@@ -31,5 +31,5 @@ void Company::setYearlyBuy(int yearlyBuy)
 // methods
 int Company::calculateReduction()
 {
-
+	return -1;
 }

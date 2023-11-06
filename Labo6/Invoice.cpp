@@ -39,5 +39,5 @@ void Invoice::setTotalPrice(float totalPrice)
 // methods
 float Invoice::calculateTotalPrice(Component* components, Customer customer)
 {
-	
+	return -1;
 }

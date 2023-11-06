@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "Component.h"
+#include "Customer.h"
 
 class Computershop
 {
@@ -15,7 +18,7 @@ public:
 private:
 	std::string name;
 	std::string address;
-	// components
-	// customers
+	std::vector<Component> components;
+	std::vector<Customer> customers;
 };
 
