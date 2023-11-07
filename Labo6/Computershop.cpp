@@ -85,7 +85,7 @@ void Computershop::saveToFile(std::string filename)
 	filestream.close();
 
 	/* rename the file */
-	// TODO code opkuisen
+	// TODO code opkuisen + no hardcode (const str)
 	if (std::fstream(filename))
 	{
 		std::remove(filename.c_str());
