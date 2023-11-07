@@ -1,7 +1,7 @@
 #include "Computershop.h"
 
 // constructor
-Computershop::Computershop(std::string name, std::string address, std::vector<Component> components, std::vector<Customer> customers)
+Computershop::Computershop(std::string name, std::string address, std::vector<Component*> components, std::vector<Customer*> customers)
 {
 	this->name = name;
 	this->address = address;
@@ -18,11 +18,11 @@ std::string Computershop::getAddress()
 {
 	return this->address;
 }
-std::vector<Component> Computershop::getComponents()
+std::vector<Component*> Computershop::getComponents()
 {
 	return this->components;
 }
-std::vector<Customer> Computershop::getCustomers()
+std::vector<Customer*> Computershop::getCustomers()
 {
 	return this->customers;
 }
@@ -37,21 +37,21 @@ void Computershop::setAddress(std::string address)
 {
 	this->address = address;
 }
-void Computershop::setComponents(std::vector<Component> components)
+void Computershop::setComponents(std::vector<Component*> components)
 {
 	this->components = components;
 }
-void Computershop::setCustomers(std::vector<Customer> customers)
+void Computershop::setCustomers(std::vector<Customer*> customers)
 {
 	this->customers = customers;
 }
 
 // methods
-void Computershop::addComponent(Component component)
+void Computershop::addComponent(Component* component)
 {
 	this->components.push_back(component);
 }
-void Computershop::addCustomer(Customer customer)
+void Computershop::addCustomer(Customer* customer)
 {
 	this->customers.push_back(customer);
 }
@@ -74,12 +74,18 @@ void Computershop::saveToFile(std::string filename)
 	/* write components */
 	size = components.size(); // get the amount of elements in the vector
 	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the number of elements
-	for (Component c : this->components)
+	for (Component* c : this->components)
 	{
-		c.serialize(filestream); // individually serialize and write every component
+		c->serialize(filestream); // individually serialize and write every component
 	}
 
 	/* write customers */
+	size = customers.size(); // get the amount of elements in the vector
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the number of elements
+	for (Customer* c : this->customers)
+	{
+		c->serialize(filestream); // individually serialize and write every customer
+	}
 
 	/* close filestream */
 	filestream.close();

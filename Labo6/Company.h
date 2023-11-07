@@ -5,6 +5,9 @@
 class Company : public Customer
 {
 public:
+	/* constructor */
+	Company();
+
 	// getters
 	int getVat();
 	int getReduction();
@@ -22,5 +25,6 @@ private:
 
 	// methods
 	int calculateReduction();
+	void serialize(std::ofstream&) const override;
 };
 

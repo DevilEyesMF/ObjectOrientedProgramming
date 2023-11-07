@@ -1,19 +1,26 @@
 #pragma once
 
 #include <string>
+#include <fstream>
 
 class Customer
 {
 public:
-	// getters
+	/* constructor */
+	Customer();
+
+	/* getters */
 	std::string getName();
 	std::string getAddress();
 	bool getCompany();
 
-	// setters
+	/* setters */
 	void setName(std::string);
 	void setAddress(std::string);
 	void setCompany(bool);
+
+	/* methods */
+	virtual void serialize(std::ofstream&) const;
 
 private:
 	std::string name;
