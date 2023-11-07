@@ -1,6 +1,10 @@
 #include "Component.h"
 
-// getters
+/* constructor */
+Component::Component(std::string manufacturer, std::string name, float price, int stock, bool laptop)
+	: manufacturer(manufacturer), name(name), type(ABSTRACT), price(price), stock(stock), laptop(laptop) {}
+
+/* getters */
 std::string Component::getManufacturer()
 {
 	return this->manufacturer;

@@ -9,6 +9,7 @@ public:
 	// enums
 	enum Type
 	{
+		ABSTRACT,
 		CASE,
 		CPU,
 		GPU,
@@ -17,6 +18,9 @@ public:
 		MOTHERBOARD,
 		POWERSUPPLY
 	};
+
+	/* constructor */
+	Component(std::string manufacturer, std::string name, float price, int stock, bool laptop);
 
 	// getters
 	std::string getManufacturer();
@@ -38,12 +42,14 @@ public:
 	virtual void serialize(std::ofstream&) const;
 	// virtual void deserialize(std::ifstream&) const;
 
+protected:
+	Type type;
+
 private:
 	std::string manufacturer;
 	std::string name;
 	float price;
 	int stock;
-	Type type;
 	bool laptop;
 };
 

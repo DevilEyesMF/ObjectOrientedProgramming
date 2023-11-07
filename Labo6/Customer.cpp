@@ -1,10 +1,8 @@
 #include "Customer.h"
 
 /* constructor */
-Customer::Customer()
-{
-	this->company = false;
-}
+Customer::Customer(std::string name, std::string address)
+	: name(name), address(address), company(false) {}
 
 // getters
 std::string Customer::getName()
@@ -28,10 +26,6 @@ void Customer::setName(std::string name)
 void Customer::setAddress(std::string address)
 {
 	this->address = address;
-}
-void Customer::setCompany(bool company)
-{
-	this->company = company;
 }
 
 /* methods */

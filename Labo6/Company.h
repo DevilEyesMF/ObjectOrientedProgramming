@@ -6,7 +6,7 @@ class Company : public Customer
 {
 public:
 	/* constructor */
-	Company();
+	Company(std::string name, std::string address, int vat, int reduction, int yearlyBuy);
 
 	// getters
 	int getVat();

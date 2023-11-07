@@ -6,7 +6,7 @@ class CPU : public Component
 {
 public:
 	/* constructor */
-	CPU();
+	CPU(std::string manufacturer, std::string name, float price, int stock, bool laptop, int speed, int cores, std::string socket);
 
 	/* getters */
 	int getSpeed();

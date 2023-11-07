@@ -19,54 +19,41 @@ int main()
 {
 	Computershop computershop = Computershop("Deze noten", "uw mamaaaaa");
 
-	computershop.getComponents().push_back(new CPU());
+	computershop.addComponent(new CPU("AMD", "3700X", 329.00, 0, 0, 3600, 8, "AM4"));
+	computershop.addCustomer(new Customer("Lander Van laer", "https://landervanlaer.com"));
+	computershop.addCustomer(new Company("Thomas More", "Jan Pieter de Nayerlaan 5, 2860 Sint-Katelijne-Waver", 21, 0, 0));
 
-	computershop.getCustomers().push_back(new Customer());
-	computershop.getCustomers().push_back(new Company());
-
-	computershop.getComponents()[0]->setManufacturer("AMD");
-
-	computershop.getCustomers()[0]->setName("Jef");
-	computershop.getCustomers()[1]->setName("Alternate");
-
-	if (Company* c = dynamic_cast<Company*>(computershop.getCustomers()[1]))
+	for (Component* co : computershop.getComponents())
 	{
-		c->setVat(21);
-		cout << "vat set" << endl;
-	}
-	else
-	{
-		cout << "failed to set vat" << endl;
-	}
-
-	for (Component* c : computershop.getComponents())
-	{
-		cout << c->getManufacturer() << endl;
+		if (CPU* c = dynamic_cast<CPU*>(co))
+		{
+			cout << "Type: " << c->getType() << "\n"
+				<< "Manufacturer: " << c->getManufacturer() << "\n" 
+				<< "Name: " << c->getName() << "\n"
+				<< "Price: " << c->getPrice() << " EUR\n"
+				<< "Stock: " << c->getStock() << "\n"
+				<< "Laptop: " << (c->getLaptop() ? "Yes" : "No") << "\n"
+				<< "Speed: " << c->getSpeed() << " MHz\n"
+				<< "Cores: " << c->getCores() << "\n"
+				<< "Socket: " << c->getSocket() << endl;
+		}
 	}
 
 	for (Customer* cu : computershop.getCustomers())
 	{
-		cout << cu->getName() << endl;
-		if (Company* co = dynamic_cast<Company*>(cu))
+		cout << (cu->getCompany() ? "Business" : "Private individual") << "\n"
+			<< "Name: " << cu->getName() << "\n"
+			<< "Address: " << cu->getAddress() << "\n";
+
+		if (Company* c = dynamic_cast<Company*>(cu))
 		{
-			cout << "VAT: " << co->getVat() << endl;
-		}
-		else
-		{
-			cout << "failed to get vat" << endl;
+			cout << "VAT: " << c->getVat() << "\n"
+				<< "Reduction: " << c->getReduction() << "\n"
+				<< "Yearly Buy: " << c->getYearlyBuy() << endl;
 		}
 	}
 
 	computershop.saveToFile("test.bin");
-
-	for (Component* c : computershop.getComponents())
-	{
-		delete c;
-	}
-	for (Customer* c : computershop.getCustomers())
-	{
-		delete c;
-	}
 
 	return 0;
 }

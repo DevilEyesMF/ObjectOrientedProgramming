@@ -7,6 +7,20 @@ Computershop::Computershop(std::string name, std::string address)
 	this->address = address;
 }
 
+/* destructor */
+Computershop::~Computershop()
+{
+	for (Component* c : this->components)
+	{
+		delete c;
+	}
+
+	for (Customer* c : this->customers)
+	{
+		delete c;
+	}
+}
+
 // getters
 std::string Computershop::getName()
 {
@@ -16,11 +30,11 @@ std::string Computershop::getAddress()
 {
 	return this->address;
 }
-std::vector<Component*> Computershop::getComponents()
+std::vector<Component*>& Computershop::getComponents()
 {
 	return this->components;
 }
-std::vector<Customer*> Computershop::getCustomers()
+std::vector<Customer*>& Computershop::getCustomers()
 {
 	return this->customers;
 }

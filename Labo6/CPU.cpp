@@ -1,11 +1,10 @@
 #include "CPU.h"
 
 // constructor
-CPU::CPU()
+CPU::CPU(std::string manufacturer, std::string name, float price, int stock, bool laptop, int speed, int cores, std::string socket)
+	: Component(manufacturer, name, price, stock, laptop), speed(speed), cores(cores), socket(socket)
 {
-	this->setType(Component::Type::CPU);
-	this->speed = 0;
-	this->cores = 0;
+	this->type = Component::Type::CPU;
 }
 
 // getters

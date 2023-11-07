@@ -1,12 +1,10 @@
 #include "Company.h"
 
 /* constructor */
-Company::Company()
+Company::Company(std::string name, std::string address, int vat, int reduction, int yearlyBuy)
+	: Customer(name, address), vat(vat), reduction(reduction), yearlyBuy(yearlyBuy)
 {
-	this->setCompany(true);
-	this->vat = 0;
-	this->reduction = 0;
-	this->yearlyBuy = 0;
+	this->company = true;
 }
 
 // getters

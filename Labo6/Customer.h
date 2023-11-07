@@ -6,8 +6,8 @@
 class Customer
 {
 public:
-	/* constructor */
-	Customer();
+	/* constructors */
+	Customer(std::string name, std::string address);
 
 	/* getters */
 	std::string getName();
@@ -17,14 +17,15 @@ public:
 	/* setters */
 	void setName(std::string);
 	void setAddress(std::string);
-	void setCompany(bool);
 
 	/* methods */
 	virtual void serialize(std::ofstream&) const;
 
+protected:
+	bool company;
+
 private:
 	std::string name;
 	std::string address;
-	bool company;
 };
 

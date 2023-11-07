@@ -12,11 +12,14 @@ public:
 	//constructor
 	Computershop(std::string name, std::string address);
 
+	/* destructor */
+	~Computershop();
+
 	// getters
 	std::string getName();
 	std::string getAddress();
-	std::vector<Component*> getComponents();
-	std::vector<Customer*> getCustomers();
+	std::vector<Component*>& getComponents();
+	std::vector<Customer*>& getCustomers();
 
 	// setters
 	void setName(std::string);
