@@ -1,12 +1,10 @@
 #include "Computershop.h"
 
 // constructor
-Computershop::Computershop(std::string name, std::string address, std::vector<Component*> components, std::vector<Customer*> customers)
+Computershop::Computershop(std::string name, std::string address)
 {
 	this->name = name;
 	this->address = address;
-	this->components = components;
-	this->customers = customers;
 }
 
 // getters

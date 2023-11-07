@@ -10,7 +10,7 @@ class Computershop
 {
 public:
 	//constructor
-	Computershop(std::string name, std::string address, std::vector<Component*> components, std::vector<Customer*> customers);
+	Computershop(std::string name, std::string address);
 
 	// getters
 	std::string getName();

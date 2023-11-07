@@ -17,24 +17,19 @@ using namespace std;
 
 int main()
 {
-	vector<Component*> comp;
-	vector<Customer*> cust;
+	Computershop computershop = Computershop("Deze noten", "uw mamaaaaa");
 
-	comp.push_back(new CPU());
+	computershop.getComponents().push_back(new CPU());
 
-	cust.push_back(new Customer());
-	cust.push_back(new Company());
+	computershop.getCustomers().push_back(new Customer());
+	computershop.getCustomers().push_back(new Company());
 
-	Computershop computershop = Computershop("Deze noten", "uw mamaaaaa", comp, cust);
+	computershop.getComponents()[0]->setManufacturer("AMD");
 
-	comp = computershop.getComponents();
-	comp[0]->setManufacturer("AMD");
-	computershop.setComponents(comp);
+	computershop.getCustomers()[0]->setName("Jef");
+	computershop.getCustomers()[1]->setName("Alternate");
 
-	cust = computershop.getCustomers();
-	cust[0]->setName("Jef");
-	cust[1]->setName("Alternate");
-	if (Company* c = dynamic_cast<Company*>(cust[1]))
+	if (Company* c = dynamic_cast<Company*>(computershop.getCustomers()[1]))
 	{
 		c->setVat(21);
 		cout << "vat set" << endl;
@@ -43,7 +38,6 @@ int main()
 	{
 		cout << "failed to set vat" << endl;
 	}
-	computershop.setCustomers(cust);
 
 	for (Component* c : computershop.getComponents())
 	{
@@ -65,11 +59,11 @@ int main()
 
 	computershop.saveToFile("test.bin");
 
-	for (Component* c : comp)
+	for (Component* c : computershop.getComponents())
 	{
 		delete c;
 	}
-	for (Customer* c : cust)
+	for (Customer* c : computershop.getCustomers())
 	{
 		delete c;
 	}
