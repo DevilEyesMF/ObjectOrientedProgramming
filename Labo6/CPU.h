@@ -5,15 +5,21 @@
 class CPU : public Component
 {
 public:
-	// getters
+	/* constructor */
+	CPU();
+
+	/* getters */
 	int getSpeed();
 	int getCores();
 	std::string getSocket();
 
-	// setters
+	/* setters */
 	void setSpeed(int);
 	void setCores(int);
 	void setSocket(std::string);
+
+	/* methods */
+	void serialize(std::ofstream&) const override;
 
 private:
 	int speed;

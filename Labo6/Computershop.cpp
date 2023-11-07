@@ -55,3 +55,44 @@ void Computershop::addCustomer(Customer customer)
 {
 	this->customers.push_back(customer);
 }
+void Computershop::saveToFile(std::string filename)
+{
+	size_t size; // used to store the length of strings or other attributes with a variable length
+
+	std::ofstream filestream("temp_data.bin", std::ios::out | std::ios::binary); // create a binary filestream
+
+	/* write name */
+	size = this->name.size(); // get the length of the string
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the length of the string
+	filestream.write(reinterpret_cast<const char*>(this->name.c_str()), size); // write the string itself
+
+	/* write address */
+	size = this->address.size(); // get the length of the string
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the length of the string
+	filestream.write(reinterpret_cast<const char*>(this->address.c_str()), size); // write the string itself
+
+	/* write components */
+	size = components.size(); // get the amount of elements in the vector
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the number of elements
+	for (Component c : this->components)
+	{
+		c.serialize(filestream); // individually serialize and write every component
+	}
+
+	/* write customers */
+
+	/* close filestream */
+	filestream.close();
+
+	/* rename the file */
+	// TODO code opkuisen
+	if (std::fstream(filename))
+	{
+		std::remove(filename.c_str());
+	}
+	rename("temp_data.bin", filename.c_str());
+}
+void Computershop::readFromFile(std::string filename)
+{
+
+}

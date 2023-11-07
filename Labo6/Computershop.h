@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Component.h"
 #include "Customer.h"
 
@@ -26,6 +27,8 @@ public:
 	// methods
 	void addComponent(Component);
 	void addCustomer(Customer);
+	void saveToFile(std::string);
+	void readFromFile(std::string);
 
 private:
 	std::string name;

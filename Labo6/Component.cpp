@@ -17,7 +17,7 @@ int Component::getStock()
 {
 	return this->stock;
 }
-int Component::getType()
+Component::Type Component::getType() const
 {
 	return this->type;
 }
@@ -43,11 +43,40 @@ void Component::setStock(int stock)
 {
 	this->stock = stock;
 }
-void Component::setType(int type)
+void Component::setType(Type type)
 {
 	this->type = type;
 }
 void Component::setLaptop(bool laptop)
 {
 	this->laptop = laptop;
+}
+
+// methods
+void Component::serialize(std::ofstream& filestream) const
+{
+	size_t size; // used to store the length of strings or other attributes with a variable length
+
+	/* send type with derived classes */
+
+	/* write manufacturer */
+	size = this->manufacturer.size(); // get the length of the string
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the length of the string
+	filestream.write(reinterpret_cast<const char*>(this->manufacturer.c_str()), size); // write the string itself
+
+	/* write name */
+	size = this->name.size(); // get the length of the string
+	filestream.write(reinterpret_cast<const char*>(&size), sizeof(size)); // write the length of the string
+	filestream.write(reinterpret_cast<const char*>(this->name.c_str()), size); // write the string itself
+
+	/* write price */
+	filestream.write(reinterpret_cast<const char*>(&this->price), sizeof(this->price));
+
+	/* write stock */
+	filestream.write(reinterpret_cast<const char*>(&this->stock), sizeof(this->stock));
+
+	/* write laptop */
+	filestream.write(reinterpret_cast<const char*>(&this->laptop), sizeof(this->laptop));
+
+	/* send type specific data with derived class */
 }
